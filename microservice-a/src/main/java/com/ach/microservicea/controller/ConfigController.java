@@ -2,6 +2,8 @@ package com.ach.microservicea.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,17 +15,20 @@ import java.util.Map;
  *
  * @author antonio.chavez
  */
-
+@RefreshScope
 @RestController("/config")
 public class ConfigController {
 
     private static final Logger logger = LoggerFactory.getLogger(ConfigController.class);
 
+    @Value("${config.value}")
+    private String configValue;
+
     @GetMapping
     public Map<String, String> getMicroserviceConfig() {
         logger.debug("Request received to return microservice A config");
 
-        return Collections.singletonMap("config","value to be configured");
+        return Collections.singletonMap("config", configValue);
     }
 
 }
