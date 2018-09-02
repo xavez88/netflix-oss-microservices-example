@@ -2,7 +2,7 @@ spring:
   application:
     name: microservice-a
   profiles:
-    active: default
+    active: prod
   cloud:
     config:
       uri: http://localhost:8888
