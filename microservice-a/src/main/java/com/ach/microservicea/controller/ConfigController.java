@@ -26,7 +26,7 @@ public class ConfigController {
 
     @GetMapping
     public Map<String, String> getMicroserviceConfig() {
-        logger.debug("Request received to return microservice A config");
+        logger.info("Request received to return microservice A config");
 
         return Collections.singletonMap("config", configValue);
     }
