@@ -1,10 +1,12 @@
-version: '2'
+version: '2.1'
 services:
   eureka-server:
     container_name: eureka-server
     image: eureka-server:latest
     expose: 
       - 8761
+    ports:
+      - 8761:8761
     networks: 
       - spring-cloud-network
   config-server:
@@ -14,9 +16,44 @@ services:
       - 8888
     networks: 
       - spring-cloud-network
-  #service-a:
-  #service-b:
+  service-a:
+    build:
+      context: .
+      dockerfile: microservice-a/Dockerfile
+    container_name: micro-a
+    image: microservice-a:latest
+    expose: 
+      - 8081
+    ports: 
+      - 8081:8081
+    networks:
+      - spring-cloud-network
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+  service-b:
+    build:
+      context: .
+      dockerfile: microservice-b/Dockerfile
+    container_name: micro-b
+    image: microservice-b:latest
+    expose: 
+      - 8082
+    ports: 
+      - 8082:8082
+    networks:
+      - spring-cloud-network
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
 networks: 
   spring-cloud-network:
-    name: netflix-oss-network
     driver: bridge
