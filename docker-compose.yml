@@ -3,8 +3,6 @@ services:
   eureka-server:
     container_name: eureka-server
     image: eureka-server:latest
-    expose: 
-      - 8761
     ports:
       - 8761:8761
     networks: 
@@ -17,13 +15,8 @@ services:
     networks: 
       - spring-cloud-network
   service-a:
-    build:
-      context: .
-      dockerfile: microservice-a/Dockerfile
     container_name: micro-a
     image: microservice-a:latest
-    expose: 
-      - 8081
     ports: 
       - 8081:8081
     networks:
@@ -36,13 +29,8 @@ services:
       config-server:
         condition: service_healthy
   service-b:
-    build:
-      context: .
-      dockerfile: microservice-b/Dockerfile
     container_name: micro-b
     image: microservice-b:latest
-    expose: 
-      - 8082
     ports: 
       - 8082:8082
     networks:
