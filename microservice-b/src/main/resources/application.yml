@@ -1,8 +1,4 @@
 server:
   port: 8082
   servlet:
-    context-path: /microservice-b
-spring:
-  cloud:
-    config:
-      uri: http://localhost:8888
+    context-path: /@project.artifactId@
