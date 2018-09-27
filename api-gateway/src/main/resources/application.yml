@@ -5,12 +5,10 @@ zuul:
   routes:
     microservice-a:
       path: /micro-a/**
-      url: http://localhost:8081
-      #serviceId: microservice-a
+      serviceId: microservice-a
     microservice-b:
       path: /micro-b/**
-      url: http://localhost:8082
-      #serviceId: microservice-b
+      serviceId: microservice-b
 
 management:
   endpoints:
