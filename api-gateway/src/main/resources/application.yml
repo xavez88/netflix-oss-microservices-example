@@ -15,3 +15,17 @@ management:
     web:
       exposure:
         include: '*'
+
+---
+spring:
+  profiles: prod
+zuul:
+  routes:
+    microservice-a:
+      path: /micro-a/**
+      serviceId: service-a
+      url: http://api-gateway:9999
+    microservice-b:
+      path: /micro-b/**
+      serviceId: service-b
+      url: http://api-gateway:9999

@@ -14,6 +14,20 @@ services:
       - 8888
     networks: 
       - spring-cloud-network
+  api-gateway:
+    container_name: api-gateway
+    image: api-gateway:latest
+    ports: 
+      - 8080:9999
+    networks: 
+      - spring-cloud-network
+    environment:
+      - "SPRING_PROFILES_ACTIVE=prod"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
   service-a:
     container_name: micro-a
     image: microservice-a:latest

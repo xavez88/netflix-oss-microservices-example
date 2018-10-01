@@ -4,6 +4,12 @@ spring:
         uri: http://localhost:8888
   application:
     name: microservice-a
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 ---
 spring:
   profiles: prod
