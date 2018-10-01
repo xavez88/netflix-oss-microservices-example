@@ -82,6 +82,7 @@
                     <tag>latest</tag>
                     <buildArgs>
                         <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        <SERVER_CONTEXT_PATH>${project.artifactId}</SERVER_CONTEXT_PATH>
                     </buildArgs>
                 </configuration>
                 <dependencies>

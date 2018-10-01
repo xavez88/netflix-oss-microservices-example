@@ -24,8 +24,8 @@ zuul:
     microservice-a:
       path: /micro-a/**
       serviceId: service-a
-      url: http://api-gateway:9999
+      url: http://service-a:8081/microservice-a/
     microservice-b:
       path: /micro-b/**
       serviceId: service-b
-      url: http://api-gateway:9999
+      url: http://service-b:8082/microservice-b/

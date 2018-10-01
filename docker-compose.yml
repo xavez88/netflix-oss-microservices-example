@@ -31,8 +31,6 @@ services:
   service-a:
     container_name: micro-a
     image: microservice-a:latest
-    ports: 
-      - 8081:8081
     networks:
       - spring-cloud-network
     environment:
@@ -45,8 +43,6 @@ services:
   service-b:
     container_name: micro-b
     image: microservice-b:latest
-    ports: 
-      - 8082:8082
     networks:
       - spring-cloud-network
     environment:
